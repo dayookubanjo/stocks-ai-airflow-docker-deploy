@@ -1,0 +1,37 @@
+[2023-05-01T19:49:27.743+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingest-data_dag.spark_ingest_submit_task manual__2023-05-01T19:49:24.807632+00:00 [queued]>
+[2023-05-01T19:49:27.779+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingest-data_dag.spark_ingest_submit_task manual__2023-05-01T19:49:24.807632+00:00 [queued]>
+[2023-05-01T19:49:27.781+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2023-05-01T19:49:27.829+0000] {taskinstance.py:1350} INFO - Executing <Task(SparkSubmitOperator): spark_ingest_submit_task> on 2023-05-01 19:49:24.807632+00:00
+[2023-05-01T19:49:27.835+0000] {standard_task_runner.py:57} INFO - Started process 259 to run task
+[2023-05-01T19:49:27.843+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'ingest-data_dag', 'spark_ingest_submit_task', 'manual__2023-05-01T19:49:24.807632+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/ingest_dag.py', '--cfg-path', '/tmp/tmpcek6o8zj']
+[2023-05-01T19:49:27.847+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask spark_ingest_submit_task
+[2023-05-01T19:49:27.886+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:188: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2023-05-01T19:49:28.039+0000] {task_command.py:410} INFO - Running <TaskInstance: ingest-data_dag.spark_ingest_submit_task manual__2023-05-01T19:49:24.807632+00:00 [running]> on host 2795c00bc189
+[2023-05-01T19:49:28.326+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='dayookubanjo@yahoo.com' AIRFLOW_CTX_DAG_OWNER='dayookubanjo' AIRFLOW_CTX_DAG_ID='ingest-data_dag' AIRFLOW_CTX_TASK_ID='spark_ingest_submit_task' AIRFLOW_CTX_EXECUTION_DATE='2023-05-01T19:49:24.807632+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2023-05-01T19:49:24.807632+00:00'
+[2023-05-01T19:49:28.368+0000] {spark_submit.py:217} INFO - Could not load connection string spark_local, defaulting to yarn
+[2023-05-01T19:49:28.378+0000] {spark_submit.py:339} INFO - Spark-Submit cmd: spark-submit --master yarn --name arrow-spark /opt/***/dags/spark_ingest_data.py
+[2023-05-01T19:49:29.672+0000] {spark_submit.py:490} INFO - /home/***/.local/lib/python3.8/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2023-05-01T19:49:45.822+0000] {spark_submit.py:490} INFO - Exception in thread "main" org.apache.spark.SparkException: When running with master 'yarn' either HADOOP_CONF_DIR or YARN_CONF_DIR must be set in the environment.
+[2023-05-01T19:49:45.825+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmitArguments.error(SparkSubmitArguments.scala:650)
+[2023-05-01T19:49:45.826+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateSubmitArguments(SparkSubmitArguments.scala:281)
+[2023-05-01T19:49:45.827+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateArguments(SparkSubmitArguments.scala:237)
+[2023-05-01T19:49:45.827+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmitArguments.<init>(SparkSubmitArguments.scala:122)
+[2023-05-01T19:49:45.828+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2$$anon$3.<init>(SparkSubmit.scala:1094)
+[2023-05-01T19:49:45.829+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.parseArguments(SparkSubmit.scala:1094)
+[2023-05-01T19:49:45.829+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+[2023-05-01T19:49:45.830+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1111)
+[2023-05-01T19:49:45.831+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1120)
+[2023-05-01T19:49:45.832+0000] {spark_submit.py:490} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2023-05-01T19:49:45.951+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 157, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 421, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master yarn --name arrow-spark /opt/***/dags/spark_ingest_data.py. Error code is: 1.
+[2023-05-01T19:49:45.962+0000] {taskinstance.py:1368} INFO - Marking task as FAILED. dag_id=ingest-data_dag, task_id=spark_ingest_submit_task, execution_date=20230501T194924, start_date=20230501T194927, end_date=20230501T194945
+[2023-05-01T19:49:45.990+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 3 for task spark_ingest_submit_task (Cannot execute: spark-submit --master yarn --name arrow-spark /opt/***/dags/spark_ingest_data.py. Error code is: 1.; 259)
+[2023-05-01T19:49:46.020+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2023-05-01T19:49:46.078+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,8 @@
+lxml
+python-decouple
+requests
+pandas
+pyarrow 
+fastparquet
+s3fs
+scikit-learn
