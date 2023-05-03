@@ -1,4 +1,5 @@
-FROM apache/airflow:2.2.5-python3.8
+# FROM apache/airflow:2.2.5-python3.8
+FROM apache/airflow:2.5.0-python3.7
 USER root
 
 # Install OpenJDK-11
@@ -8,8 +9,10 @@ RUN apt update && \
     apt-get clean;
 
 # Set JAVA_HOME
+
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
 RUN export JAVA_HOME
+RUN export PYSPARK_SUBMIT_ARGS="--master spark://b89158def524:7077"
 
 USER airflow
 

@@ -6,3 +6,5 @@ pyarrow
 fastparquet
 s3fs
 scikit-learn
+pyspark
+apache-airflow-providers-apache-spark
