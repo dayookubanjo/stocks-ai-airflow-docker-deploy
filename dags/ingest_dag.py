@@ -27,24 +27,24 @@ Extract = SparkSubmitOperator(
 		application = "/opt/airflow/dags/spark_ingest_data.py",
 		conn_id= 'spark_local', 
 		task_id='spark_ingest_submit_task', 
-		dag=spark_dag,
-        conf={'master':'spark://b89158def524:7077'} 
+		dag=spark_dag
+        ,conf={'master':'spark://b89158def524:7077'} 
 		)
 
 Transform = SparkSubmitOperator(
 		application = "/opt/airflow/dags/spark_transform_data.py",
 		conn_id= 'spark_local', 
 		task_id='spark_transform_task', 
-		dag=spark_dag,
-        conf={'master':'spark://b89158def524:7077'}  
+		dag=spark_dag
+        ,conf={'master':'spark://b89158def524:7077'}  
 		)
 
 Model_Train = SparkSubmitOperator(
 		application = "/opt/airflow/dags/spark_train_model.py",
 		conn_id= 'spark_local', 
 		task_id='spark_train_model_task', 
-		dag=spark_dag,
-        conf={'master':'spark://b89158def524:7077'}  
+		dag=spark_dag
+        ,conf={'master':'spark://b89158def524:7077'}  
 		)
 
 Extract >> Transform >> Model_Train

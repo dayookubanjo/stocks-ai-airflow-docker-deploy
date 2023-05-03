@@ -12,7 +12,7 @@ RUN apt update && \
 
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
 RUN export JAVA_HOME
-RUN export PYSPARK_SUBMIT_ARGS="--master spark://b89158def524:7077"
+# RUN export PYSPARK_SUBMIT_ARGS="--master spark://b89158def524:7077"
 
 USER airflow
 
