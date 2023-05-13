@@ -12,7 +12,8 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 import pickle
 import numpy as np
-from sklearn.linear_model import LinearRegression 
+from sklearn.linear_model import LinearRegression
+from category_encoders.target_encoder import TargetEncoder 
 
 aws_access_key = config('AWS_ACCESS_KEY')
 aws_secret_key = config('AWS_SECRET_KEY')
@@ -36,17 +37,17 @@ y_df = pandas_df['Volume_New']
 x_train, x_test,y_train, y_test = train_test_split(x_df,y_df, test_size = 0.2, stratify=x_df[["Symbol"]])
 
 
-ct = ColumnTransformer(transformers= [ ("encoder", OneHotEncoder(),[0])], remainder="passthrough")
+target_encoder = TargetEncoder()
+symbol_encoder = target_encoder.fit(x_df['Symbol'],y_df)
 
-symbol_encoder =  ct.fit(x_df) 
+x_train['Symbol_2'] =  symbol_encoder.transform(x_train['Symbol']) 
+x_test['Symbol_2'] =  symbol_encoder.transform(x_test['Symbol'])
 
+x_train = x_train.drop('Symbol', axis=1)
+x_test = x_test.drop('Symbol', axis=1)
 
-filename = './sklearn_models/symbol_encoder.sav'
+filename = './sklearn_models/symbol_target_encoder.sav'
 pickle.dump(symbol_encoder, open(filename, 'wb'))
-
-
-x_train =  symbol_encoder.transform(x_train) 
-x_test =  symbol_encoder.transform(x_test) 
 
 
 LR = LinearRegression()

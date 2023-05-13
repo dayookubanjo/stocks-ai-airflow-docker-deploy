@@ -8,3 +8,4 @@ s3fs
 scikit-learn
 pyspark
 apache-airflow-providers-apache-spark
+category_encoders

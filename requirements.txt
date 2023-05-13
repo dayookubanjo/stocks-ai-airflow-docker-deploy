@@ -9,3 +9,4 @@ pyarrow
 fastparquet
 scikit-learn
 s3fs
+category_encoders
